@@ -1,6 +1,6 @@
 const { exec } = require('child_process');
 const path = require('path');
-const { NODE_ENV } = require('../config/environments');
+const { NODE_ENV } = require('../app/config/environments');
 
 const docsLocation = path.join(__dirname, '../doc');
 const removePreviousDocs = `rm -rf ${docsLocation}`;

@@ -81,7 +81,7 @@ app.use('/api/v1', AuthRoutes);
 app.use('/api/v1', UserRoutes);
 
 if (environments.NODE_ENV === 'development') {
-  require('./app/scripts/create-docs');
+  require('./scripts/create-docs');
   app.use('/apidoc', express.static(path.join(__dirname, './doc')));
 }
 
