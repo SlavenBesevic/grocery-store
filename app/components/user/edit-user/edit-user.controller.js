@@ -64,7 +64,7 @@ module.exports = async (req, res) => {
     }
   );
 
-  if (!updatedUser.n) {
+  if (!updatedUser.matchedCount) {
     throw new Error(error.NOT_FOUND)
   }
 

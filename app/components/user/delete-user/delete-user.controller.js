@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
 
   const deletedUser = await User.deleteOne({ _id, store });
 
-  if (!deletedUser.n) {
+  if (!deletedUser.deletedCount) {
     throw new Error(error.NOT_FOUND)
   }
 

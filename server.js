@@ -42,12 +42,7 @@ app.use(expressJwt({ secret: environments.JWT_SECRET, algorithms: environments.J
 }));
 
 // Create the database connection
-mongoose.connect(environments.MONGO_DB, {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+mongoose.connect(environments.MONGO_DB);
 
 mongoose.connection.on('connected', () => {
   console.log(`Mongoose default connection open to ${environments.MONGO_DB}`);
