@@ -37,7 +37,7 @@ app.use(lusca.xssProtection(true));
 app.use(expressJwt({ secret: environments.JWT_SECRET, algorithms: environments.JWT_ALGORITHMS }).unless({
   path: [
     '/api/v1/signin',
-    '/api/v1/apidoc',
+    /\/apidoc.+/,
   ],
 }));
 
@@ -75,11 +75,14 @@ process.on('SIGINT', () => {
 app.use('/api/v1', AuthRoutes);
 app.use('/api/v1', UserRoutes);
 
-if (environments.NODE_ENV === 'development') {
+if (environments.NODE_ENV === 'development.local') {
   require('./scripts/create-docs');
-  app.use('/apidoc', express.static(path.join(__dirname, './doc')));
+  const os = require('os');
+  const homeDir = os.homedir();
+  app.use('/api/v1/apidoc', express.static(path.join(homeDir, '/doc')));
+  console.log('Hello');
 }
-
+console.log('World');
 app.use(ErrorHandler());
 
 // show env vars
